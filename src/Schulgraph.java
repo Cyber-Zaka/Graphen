@@ -1,4 +1,4 @@
-import java.util.List;
+
 
 /**
  * Beschreiben Sie hier die Klasse Schulgraph.
@@ -35,9 +35,17 @@ public class Schulgraph
     /**
      * Die Anfrage gibt die ID aller Knoten auf der Konsole aus.
      */
-    public void knotenAnzeigen(){
+    public void knotenAnzeigen() {
         //dein Quellcode hier
+        List<Vertex> alleKnoten = g.getVertices();
+        alleKnoten.toFirst();
+        if (alleKnoten.hasAccess())
+            while (alleKnoten.hasAccess()) {
+            System.out.println(alleKnoten.getContent().getID());
+            alleKnoten.next();
+        }
     }
+
 
     /**
      * man erstellt eine Liste mit allen Knoten und durchläuft diese - hierbei werden vom jeden einzelnen
@@ -45,6 +53,21 @@ public class Schulgraph
      */
     public void adListe(){
         //dein Quellcode hier
+        List<Vertex> alleKnoten = g.getVertices();
+        alleKnoten.toFirst();
+        if (alleKnoten.hasAccess())
+            while (alleKnoten.hasAccess()) {
+                Vertex aktuellerKnoten = alleKnoten.getContent();
+                List<Edge> kanten = g.getEdges();
+                kanten.toFirst();
+                while (kanten.hasAccess()) {
+                    Edge aktuelleKante = kanten.getContent();
+                    if (aktuelleKante.getVertices(.equals(aktuellerKnoten)) {
+                        System.out.println(aktuelleKante.getID() + " ist mit " + aktuelleKante.getEnd().getID() + " verbunden mit Gewicht " + aktuelleKante.getWeight());
+                    }
+                    kanten.next();
+                }
+            }
     }
 
     /**
@@ -62,7 +85,7 @@ public class Schulgraph
      */
     public int zaehleKnoten()
     {
-        int anzahl;
+        int anzahl = 0;
         //dein Quellcode hier
         return anzahl;
     }
@@ -95,6 +118,7 @@ public class Schulgraph
      */
     private List<Vertex> breitensucheIntern(Vertex pStart) {
         // dein Quellcode hier
+        List<Vertex> ergebnisListe = new List<>();
         return ergebnisListe;
     }
 
@@ -114,6 +138,7 @@ public class Schulgraph
      */
     private List<Vertex> tiefendurchlaufIntern(Vertex pStart) {
         //Dein Quellcode hier
+        List<Vertex> ergebnisListe = new List<>();
         return ergebnisListe;
     }
 }
