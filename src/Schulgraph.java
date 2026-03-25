@@ -29,7 +29,7 @@ public class Schulgraph
         g.addVertex(rueckertstr);
         g.addVertex(lz);
 
-        adListe();
+        //adListe();
     }
 
     /**
@@ -58,7 +58,7 @@ public class Schulgraph
         if (alleKnoten.hasAccess())
             while (alleKnoten.hasAccess()) {
                 Vertex aktuellerKnoten = alleKnoten.getContent();
-                List<Edge> kanten = g.getEdges(aktuellerKnoten);
+                List<Edge> kanten = g.getEdges(alleKnoten.getContent());
                 kanten.toFirst();
                 while(kanten.hasAccess()) {
                     Vertex[] X;
@@ -71,6 +71,7 @@ public class Schulgraph
                     kanten.next();
                 }
             }
+        alleKnoten.next();
     }
 
     /**
@@ -88,7 +89,12 @@ public class Schulgraph
      */
     public int zaehleKnoten()
     {
+        List<Edge> kanten = g.getEdges();
         int anzahl = 0;
+        while(kanten.hasAccess()){
+            anzahl++;
+            kanten.next();
+        }
         //dein Quellcode hier
         return anzahl;
     }
