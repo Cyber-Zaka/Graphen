@@ -60,13 +60,7 @@ public class Schulgraph
                 Vertex aktuellerKnoten = alleKnoten.getContent();
                 List<Edge> kanten = g.getEdges();
                 kanten.toFirst();
-                while (kanten.hasAccess()) {
-                    Edge aktuelleKante = kanten.getContent();
-                    if (aktuelleKante.getVertices(.equals(aktuellerKnoten)) {
-                        System.out.println(aktuelleKante.getID() + " ist mit " + aktuelleKante.getEnd().getID() + " verbunden mit Gewicht " + aktuelleKante.getWeight());
-                    }
-                    kanten.next();
-                }
+
             }
     }
 
