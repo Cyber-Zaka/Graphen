@@ -8,5 +8,6 @@ public class Main {
     Main(){
         Barlas= new Schulgraph();
         Barlas.knotenAnzeigen();
+        Barlas.adListe();
     }
 }

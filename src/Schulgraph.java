@@ -58,9 +58,18 @@ public class Schulgraph
         if (alleKnoten.hasAccess())
             while (alleKnoten.hasAccess()) {
                 Vertex aktuellerKnoten = alleKnoten.getContent();
-                List<Edge> kanten = g.getEdges();
+                List<Edge> kanten = g.getEdges(aktuellerKnoten);
                 kanten.toFirst();
-
+                while(kanten.hasAccess()) {
+                    Vertex[] X;
+                    X = kanten.getContent().getVertices();
+                    if (X[0].getID() == aktuellerKnoten.getID()) {
+                        System.out.println(aktuellerKnoten.getID() + " ist mit " + X[1].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    } else {
+                        System.out.println(aktuellerKnoten.getID() + " ist mit " + X[0].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    }
+                    kanten.next();
+                }
             }
     }
 
