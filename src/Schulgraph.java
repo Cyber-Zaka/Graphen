@@ -20,16 +20,99 @@ public class Schulgraph
         // Aufbau des Schulgraphen
         g = new Graph();
 
-
         //alle Kanten und Knoten werden deklariert und initialisiert
-        Vertex rueckertstr = new Vertex("Rückertstraße");
-        Vertex lz = new Vertex("LZ");
+        Vertex TorRk = new Vertex("Tor Rk");
+        Vertex LZ = new Vertex("LZ");
+        Vertex Sekretariat = new Vertex("Sekretariat");
+        Vertex PZ = new Vertex("PZ");
+        Vertex Radkeller = new Vertex("Radkeller");
+        Vertex Mensa = new Vertex("Mensa");
+        Vertex Cafeteria = new Vertex("Cafeteria");
+        Vertex WC = new Vertex("WC");
+        Vertex Aula = new Vertex("Aula");
+        Vertex Kunstraum = new Vertex("Kunstraum");
+        Vertex Inforaum = new Vertex("Inforaum");
+        Vertex Musikraum = new Vertex("Musikraum");
+        Vertex Inforaum1029 = new Vertex("Inforaum -1029");
+        Vertex Sporthalle = new Vertex("Sporthalle");
+        Vertex Tischtennisplatten = new Vertex("Tischtennisplatten");
+        Vertex TorSF = new Vertex("Tor SF");
+        Vertex Fußballplatz = new Vertex("Fußballplatz");
+        Vertex Schulzoo = new Vertex("Schulzoo");
+        Vertex Bioraum = new Vertex("Bioraum");
+        Vertex Chemieraum = new Vertex("Chemieraum");
+        Vertex NWTreppenhaus = new Vertex("NW Treppenhaus");
+
+
 
         //die Knoten und Kanten werden dem Graphen hinzugefügt
-        g.addVertex(rueckertstr);
-        g.addVertex(lz);
+        g.addVertex(TorRk);
+        g.addVertex(LZ);
+        g.addVertex(Sekretariat);
+        g.addVertex(PZ);
+        g.addVertex(Radkeller);
+        g.addVertex(Mensa);
+        g.addVertex(Cafeteria);
+        g.addVertex(WC);
+        g.addVertex(Aula);
+        g.addVertex(Kunstraum);
+        g.addVertex(Inforaum);
+        g.addVertex(Musikraum);
+        g.addVertex(Inforaum1029);
+        g.addVertex(Sporthalle);
+        g.addVertex(Tischtennisplatten);
+        g.addVertex(TorSF);
+        g.addVertex(Fußballplatz);
+        g.addVertex(Schulzoo);
+        g.addVertex(Bioraum);
+        g.addVertex(Chemieraum);
+        g.addVertex(NWTreppenhaus);
 
-        //adListe();
+        g.addEdge(new Edge(Mensa, LZ, 96));
+        g.addEdge(new Edge(Mensa, Cafeteria, 7));
+        g.addEdge(new Edge(Mensa, WC, 22));
+        g.addEdge(new Edge(WC, Cafeteria, 22));
+        g.addEdge(new Edge(Cafeteria, Aula, 7));
+        g.addEdge(new Edge(Aula, WC, 15));
+        g.addEdge(new Edge(Cafeteria, Kunstraum, 90));
+        g.addEdge(new Edge(Kunstraum, Aula, 71));
+        g.addEdge(new Edge(Kunstraum, Musikraum, 9));
+        g.addEdge(new Edge(Kunstraum, Inforaum1029, 50));
+        g.addEdge(new Edge(Kunstraum, Inforaum, 64));
+        g.addEdge(new Edge(Musikraum, Inforaum1029, 55));
+        g.addEdge(new Edge(Musikraum, Inforaum, 50));
+        g.addEdge(new Edge(Inforaum, Inforaum1029, 5));
+        g.addEdge(new Edge(Kunstraum, Inforaum1029, 50));
+        g.addEdge(new Edge(Aula, Inforaum, 95));
+        g.addEdge(new Edge(WC, Inforaum, 80));
+        g.addEdge(new Edge(Inforaum, PZ, 96));
+        g.addEdge(new Edge(PZ, TorRk, 98));
+        g.addEdge(new Edge(PZ, Radkeller, 45));
+        g.addEdge(new Edge(PZ, LZ, 37));
+        g.addEdge(new Edge(PZ, Sekretariat, 37));
+        g.addEdge(new Edge(TorRk, LZ, 79));
+        g.addEdge(new Edge(TorRk, Sekretariat, 78));
+        g.addEdge(new Edge(LZ, Sekretariat, 18));
+        g.addEdge(new Edge(LZ, Radkeller, 27));
+        g.addEdge(new Edge(Sekretariat, Radkeller, 26));
+        g.addEdge(new Edge(Inforaum, Sporthalle, 95));
+        g.addEdge(new Edge(Inforaum, Fußballplatz, 34));
+        g.addEdge(new Edge(Sporthalle, Fußballplatz, 58));
+        g.addEdge(new Edge(Sporthalle, Tischtennisplatten, 28));
+        g.addEdge(new Edge(Sporthalle, TorSF, 63));
+        g.addEdge(new Edge(Fußballplatz, Tischtennisplatten, 57));
+        g.addEdge(new Edge(Fußballplatz, TorSF, 34));
+        g.addEdge(new Edge(Tischtennisplatten, TorSF, 8));
+        g.addEdge(new Edge(Inforaum, Schulzoo, 17));
+        g.addEdge(new Edge(Inforaum, NWTreppenhaus, 13));
+        g.addEdge(new Edge(Schulzoo, Chemieraum, 7));
+        g.addEdge(new Edge(Chemieraum, NWTreppenhaus, 22));
+        g.addEdge(new Edge(NWTreppenhaus, Bioraum, 21));
+        g.addEdge(new Edge(Chemieraum, Bioraum, 4));
+        g.addEdge(new Edge(Schulzoo, Bioraum, 7));
+
+
+        adListe();
     }
 
     /**
