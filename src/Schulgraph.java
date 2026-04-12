@@ -112,7 +112,7 @@ public class Schulgraph
         g.addEdge(new Edge(Schulzoo, Bioraum, 7));
 
 
-        adListe();
+       // adListe();
     }
 
     /**
@@ -138,6 +138,7 @@ public class Schulgraph
         //dein Quellcode hier
         List<Vertex> alleKnoten = g.getVertices();
         alleKnoten.toFirst();
+
         if (alleKnoten.hasAccess())
             while (alleKnoten.hasAccess()) {
                 Vertex aktuellerKnoten = alleKnoten.getContent();
@@ -146,15 +147,16 @@ public class Schulgraph
                 while(kanten.hasAccess()) {
                     Vertex[] X;
                     X = kanten.getContent().getVertices();
-                    if (X[0].getID() == aktuellerKnoten.getID()) {
+                    if (X[0].getID().equals(aktuellerKnoten.getID())) {
                         System.out.println(aktuellerKnoten.getID() + " ist mit " + X[1].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
                     } else {
                         System.out.println(aktuellerKnoten.getID() + " ist mit " + X[0].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
                     }
                     kanten.next();
                 }
+
+                  alleKnoten.next();
             }
-        alleKnoten.next();
     }
 
     /**
