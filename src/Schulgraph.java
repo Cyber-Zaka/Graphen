@@ -166,6 +166,30 @@ public class Schulgraph
 
     public void kantenAnzeigen(String pVertex){
         //dein Quellcode hier
+        List<Vertex> alleKnoten = g.getVertices();
+        alleKnoten.toFirst();
+        while (alleKnoten.hasAccess()) {
+            Vertex aktuellerKnoten = alleKnoten.getContent();
+            if(aktuellerKnoten.getID().equals(pVertex)){
+                List<Edge> kanten = g.getEdges(alleKnoten.getContent());
+                kanten.toFirst();
+                while(kanten.hasAccess()) {
+                    Vertex[] X;
+                    X = kanten.getContent().getVertices();
+                    if (X[0].getID().equals(aktuellerKnoten.getID())) {
+                        System.out.println(aktuellerKnoten.getID() + " ist mit " + X[1].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    } else {
+                        System.out.println(aktuellerKnoten.getID() + " ist mit " + X[0].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    }
+                    kanten.next();
+                }
+
+                alleKnoten.next();
+            }
+            else{
+                alleKnoten.next();
+            }
+        }
     }
 
     /**
@@ -181,6 +205,7 @@ public class Schulgraph
             kanten.next();
         }
         //dein Quellcode hier
+        System.out.println(anzahl);
         return anzahl;
     }
 
