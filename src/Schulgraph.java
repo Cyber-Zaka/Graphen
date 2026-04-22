@@ -226,10 +226,16 @@ public class Schulgraph
      * @param pStart : String
      * @return Ergebnisliste der Breitensuche
      */
+    Queue<Vertex> ws = new Queue<>();
     public List<Vertex> breitensuche(String pStart)
     {
+        while(!ws.isEmpty()) {
+            ws.dequeue();
+        }
         Vertex gesuchterKnoten = g.getVertex(pStart);
-        return breitensucheIntern(gesuchterKnoten);
+        //Queue<Vertex> ws = new Queue<>();
+        ws.enqueue(gesuchterKnoten);
+        return breitensucheIntern(ws.front());
     }
 
     /**
@@ -237,7 +243,29 @@ public class Schulgraph
      */
     private List<Vertex> breitensucheIntern(Vertex pStart) {
         // dein Quellcode hier
+
         List<Vertex> ergebnisListe = new List<>();
+        //Queue<Vertex> ws = new Queue<>();
+        ws.enqueue(pStart);
+            List<Edge> kanten = g.getEdges(pStart);
+            kanten.toFirst();
+            while(kanten.hasAccess()) {
+                Vertex[] X;
+                X = kanten.getContent().getVertices();
+                if (X[0].getID().equals(pStart.getID())) {
+                    System.out.println(pStart.getID() + " ist mit " + X[1].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    X[1].setMark(true);
+                    ws.enqueue(X[1]);
+                } else {
+                    System.out.println(pStart.getID() + " ist mit " + X[0].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    X[0].setMark(true);
+                    ws.enqueue(X[0]);
+                }
+                kanten.next();
+            }
+            breitensucheIntern(ws.front());
+            ws.dequeue();
+
         return ergebnisListe;
     }
 
