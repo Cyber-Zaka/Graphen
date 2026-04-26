@@ -218,6 +218,40 @@ public class Schulgraph
     public double[][] admatrixRueckgabe()
     {
         //dein Quellcode hier
+            List<Vertex> alleKnoten = g.getVertices();
+            int anzahlKnoten = 0;
+            while(alleKnoten.hasAccess()){
+                anzahlKnoten++;
+                alleKnoten.next();
+            }
+            double[][] admatrix = new double[anzahlKnoten][anzahlKnoten];
+            for(int i = 0; i < anzahlKnoten; i++){
+                for(int j = 0; j < anzahlKnoten; j++){
+                    admatrix[i][j] = Double.POSITIVE_INFINITY;
+                }
+            }
+            alleKnoten.toFirst();
+            int i = 0;
+            while(alleKnoten.hasAccess()){
+                Vertex aktuellerKnoten = alleKnoten.getContent();
+                List<Edge> kanten = g.getEdges(alleKnoten.getContent());
+                kanten.toFirst();
+                while(kanten.hasAccess()) {
+                    Vertex[] X;
+                    X = kanten.getContent().getVertices();
+                    int j;
+                    if (X[0].getID().equals(aktuellerKnoten.getID())) {
+                        j = getIndex(X[1]);
+                        admatrix[i][j] = kanten.getContent().getWeight();
+                    } else {
+                        j = getIndex(X[0]);
+                        admatrix[i][j] = kanten.getContent().getWeight();
+                    }
+                    kanten.next();
+                }
+                alleKnoten.next();
+                i++;
+            }
         return admatrix;
     }
 
