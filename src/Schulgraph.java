@@ -218,40 +218,6 @@ public class Schulgraph
     public double[][] admatrixRueckgabe()
     {
         //dein Quellcode hier
-            List<Vertex> alleKnoten = g.getVertices();
-            int anzahlKnoten = 0;
-            while(alleKnoten.hasAccess()){
-                anzahlKnoten++;
-                alleKnoten.next();
-            }
-            double[][] admatrix = new double[anzahlKnoten][anzahlKnoten];
-            for(int i = 0; i < anzahlKnoten; i++){
-                for(int j = 0; j < anzahlKnoten; j++){
-                    admatrix[i][j] = Double.POSITIVE_INFINITY;
-                }
-            }
-            alleKnoten.toFirst();
-            int i = 0;
-            while(alleKnoten.hasAccess()){
-                Vertex aktuellerKnoten = alleKnoten.getContent();
-                List<Edge> kanten = g.getEdges(alleKnoten.getContent());
-                kanten.toFirst();
-                while(kanten.hasAccess()) {
-                    Vertex[] X;
-                    X = kanten.getContent().getVertices();
-                    int j;
-                    if (X[0].getID().equals(aktuellerKnoten.getID())) {
-                        j = getIndex(X[1]);
-                        admatrix[i][j] = kanten.getContent().getWeight();
-                    } else {
-                        j = getIndex(X[0]);
-                        admatrix[i][j] = kanten.getContent().getWeight();
-                    }
-                    kanten.next();
-                }
-                alleKnoten.next();
-                i++;
-            }
         return admatrix;
     }
 
@@ -280,7 +246,7 @@ public class Schulgraph
 
         List<Vertex> ergebnisListe = new List<>();
         //Queue<Vertex> ws = new Queue<>();
-        ws.enqueue(pStart);
+       // ws.enqueue(pStart);
             List<Edge> kanten = g.getEdges(pStart);
             kanten.toFirst();
             while(kanten.hasAccess()) {
@@ -288,17 +254,27 @@ public class Schulgraph
                 X = kanten.getContent().getVertices();
                 if (X[0].getID().equals(pStart.getID())) {
                     System.out.println(pStart.getID() + " ist mit " + X[1].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    if (X[1].isMarked() == false) {
+                        ws.enqueue(X[1]);
+                    }
                     X[1].setMark(true);
-                    ws.enqueue(X[1]);
+
                 } else {
                     System.out.println(pStart.getID() + " ist mit " + X[0].getID() + " verbunden, Gewicht: " + kanten.getContent().getWeight());
+                    if(X[0].isMarked() == false) {
+                        ws.enqueue(X[0]);
+                    }
                     X[0].setMark(true);
-                    ws.enqueue(X[0]);
+
                 }
                 kanten.next();
             }
-            breitensucheIntern(ws.front());
             ws.dequeue();
+            if(ws.isEmpty()){
+                return ergebnisListe;
+            }
+            breitensucheIntern(ws.front());
+
 
         return ergebnisListe;
     }
