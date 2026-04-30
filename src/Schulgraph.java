@@ -287,6 +287,7 @@ public class Schulgraph
     public List<Vertex> tiefendurchlauf(String pStart)
     {
         Vertex gesuchterKnoten = g.getVertex(pStart);
+        g.setAllEdgeMarks(false);
         return tiefendurchlaufIntern(gesuchterKnoten);
     }
 
@@ -296,6 +297,24 @@ public class Schulgraph
     private List<Vertex> tiefendurchlaufIntern(Vertex pStart) {
         //Dein Quellcode hier
         List<Vertex> ergebnisListe = new List<>();
+        pStart.setMark(true);
+        ergebnisListe.append(pStart);
+        List<Edge> kanten = g.getEdges(pStart);
+        kanten.toFirst();
+        while(kanten.hasAccess()) {
+            Vertex[] X;
+            X = kanten.getContent().getVertices();
+            if (X[0].getID().equals(pStart.getID())) {
+                if (X[1].isMarked() == false) {
+                    ergebnisListe.concat(tiefendurchlaufIntern(X[1]));
+                }
+            }else {
+                if(X[0].isMarked() == false) {
+                    ergebnisListe.concat(tiefendurchlaufIntern(X[0]));
+                }
+            }
+            kanten.next();
+        }
         return ergebnisListe;
     }
 }
