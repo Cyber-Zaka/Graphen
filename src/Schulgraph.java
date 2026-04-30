@@ -218,6 +218,8 @@ public class Schulgraph
     public double[][] admatrixRueckgabe()
     {
         //dein Quellcode hier
+
+
         return admatrix;
     }
 
@@ -232,6 +234,7 @@ public class Schulgraph
         while(!ws.isEmpty()) {
             ws.dequeue();
         }
+        g.setAllEdgeMarks(false);
         Vertex gesuchterKnoten = g.getVertex(pStart);
         //Queue<Vertex> ws = new Queue<>();
         ws.enqueue(gesuchterKnoten);
